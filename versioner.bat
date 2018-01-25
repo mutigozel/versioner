@@ -1,0 +1,1 @@
+"C:\Users\Muti\Documents\Visual Studio 2017\Projects\MutiProjects\versioner\versioner\bin\Debug\versioner.exe" -m 1 -n 1 -y 2015 -p "C:\Users\Muti\Documents\Visual Studio 2017\Projects\MutiProjects\versioner\versioner\versioner.csproj"
