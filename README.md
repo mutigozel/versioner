@@ -7,8 +7,6 @@ Utility to modify version for a .NET Project.
 
 Generates a new version with the definition below and modifies all related files for the given project. 
 
-New version is generated according to the rules below.
-
 ```
  <Major>.<Minor>.<Build>.<Revision>
 
