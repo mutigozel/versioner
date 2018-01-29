@@ -1,0 +1,1 @@
+"%cd%\versioner\bin\Debug\versioner.exe" -m 1 -n 1 -y 2015 -p "%cd%\versioner\versioner.csproj"
