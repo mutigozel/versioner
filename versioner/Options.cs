@@ -46,7 +46,7 @@ namespace versioner
                 return string.Empty;
             }
             TimeSpan span = DateTime.Now - birth;
-            int days = Convert.ToInt32(span.TotalDays);
+            int days = Convert.ToInt32(Math.Floor(span.TotalDays));
             days = Math.Max(1, days);
             return days.ToString("0");
         }
