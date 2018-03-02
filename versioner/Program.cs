@@ -118,7 +118,13 @@ namespace versioner
             if (options.ProjectFile.EndsWith("csproj"))
             {
                 VersionerCS versionerCS = new VersionerCS();
+
                 versionerCS.Version(options.ProjectFile, options.Version4Str());
+
+                Console.ForegroundColor = Tools.IrregularConsoleColor;
+                Console.WriteLine(versionerCS.Log);
+                Console.ForegroundColor = Tools.RegularConsoleColor;
+
                 return;
             }
 
@@ -126,7 +132,13 @@ namespace versioner
             if (options.ProjectFile.EndsWith("vbproj"))
             {
                 VersionerVB versionerVB = new VersionerVB();
+
                 versionerVB.Version(options.ProjectFile, options.Version4Str());
+
+                Console.ForegroundColor = Tools.IrregularConsoleColor;
+                Console.WriteLine(versionerVB.Log);
+                Console.ForegroundColor = Tools.RegularConsoleColor;
+
                 return;
             }
 
@@ -134,7 +146,13 @@ namespace versioner
             if (options.ProjectFile.EndsWith("vdproj"))
             {
                 VersionerVD versionerVD = new VersionerVD();
+
                 versionerVD.Version(options.ProjectFile, options.Version3Str());
+
+                Console.ForegroundColor = Tools.IrregularConsoleColor;
+                Console.WriteLine(versionerVD.Log);
+                Console.ForegroundColor = Tools.RegularConsoleColor;
+
                 return;
             }
 

@@ -8,6 +8,7 @@ namespace versioner
 {
     class VersionerVD
     {
+        public string Log = string.Empty;
 
         public void Version(string file, string version)
         {
@@ -64,6 +65,7 @@ namespace versioner
             {
                 System.IO.File.WriteAllText(file + "._versioner_backup_", oldContent);
                 System.IO.File.WriteAllText(file, newContent);
+                this.Log = this.Log + Environment.NewLine + $" ver : {version} - file : {file}";
             }
             catch (Exception)
             {
