@@ -74,14 +74,41 @@ namespace versioner
             List<string> oldLines = System.IO.File.ReadAllLines(file).ToList();
             List<string> newLines = System.IO.File.ReadAllLines(file).ToList();
 
-            string ptrn3 = @"<ApplicationVersion>";
-            string line3 = string.Format(@"    <ApplicationVersion>{0}</ApplicationVersion>", version);
+            string ptrn1 = @"<Version>";
+            string line1 = string.Format(@"    <Version>{0}</Version>", version);
+
+            string ptrn2 = @"<FileVersion>";
+            string line2 = string.Format(@"    <FileVersion>{0}</FileVersion>", version);
+
+            string ptrn3 = @"<AssemblyVersion>";
+            string line3 = string.Format(@"    <AssemblyVersion>{0}</AssemblyVersion>", version);
+
+            string ptrn4 = @"<ApplicationVersion>";
+            string line4 = string.Format(@"    <ApplicationVersion>{0}</ApplicationVersion>", version);
 
             for (int i = 0; i < newLines.Count(); i++)
             {
+                if (newLines[i].Trim().StartsWith(ptrn1))
+                {
+                    newLines[i] = line1;
+                    continue;
+                }
+
+                if (newLines[i].Trim().StartsWith(ptrn2))
+                {
+                    newLines[i] = line2;
+                    continue;
+                }
+
                 if (newLines[i].Trim().StartsWith(ptrn3))
                 {
                     newLines[i] = line3;
+                    continue;
+                }
+
+                if (newLines[i].Trim().StartsWith(ptrn4))
+                {
+                    newLines[i] = line4;
                     continue;
                 }
             }
