@@ -21,7 +21,7 @@ namespace versioner
             string file = System.IO.Path.Combine(path, "Properties", "AssemblyInfo.cs");
 
             if (!System.IO.File.Exists(file))
-                throw new Exception("AssemblyInfo does not exist.");
+                return;
 
             List<string> oldLines = System.IO.File.ReadAllLines(file).ToList();
             List<string> newLines = System.IO.File.ReadAllLines(file).ToList();
