@@ -86,10 +86,16 @@ namespace versioner
             string ptrn4 = @"<ApplicationVersion>";
             string line4 = string.Format(@"    <ApplicationVersion>{0}</ApplicationVersion>", version);
 
-            for (int i = 0; i < newLines.Count(); i++)
+            for (int i = 1; i < newLines.Count(); i++)
             {
                 if (newLines[i].Trim().StartsWith(ptrn1))
                 {
+                    // nuget packagereference
+                    if (newLines[i - 1].Contains("PackageReference"))
+                        continue;
+                    if (newLines[i].Contains("PackageReference"))
+                        continue;
+
                     newLines[i] = line1;
                     continue;
                 }

@@ -28,7 +28,7 @@ namespace versioner
             {
                 options.Parse(args.ToList());
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Console.ForegroundColor = Tools.IrregularConsoleColor;
                 Console.WriteLine("");
