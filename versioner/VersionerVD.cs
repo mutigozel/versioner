@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace versioner
 {
@@ -63,8 +61,8 @@ namespace versioner
             // backup and write
             try
             {
-                System.IO.File.WriteAllText(file + "._versioner_backup_", oldContent);
-                System.IO.File.WriteAllText(file, newContent);
+                System.IO.File.WriteAllText(file + "._versioner_backup_", oldContent, System.Text.Encoding.UTF8);
+                System.IO.File.WriteAllText(file, newContent, System.Text.Encoding.UTF8);
                 this.Log = this.Log + Environment.NewLine + $" ver : {version} - file : {file}";
             }
             catch (Exception)

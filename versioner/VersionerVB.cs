@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace versioner
 {
@@ -61,8 +59,8 @@ namespace versioner
             // backup and write
             try
             {
-                System.IO.File.WriteAllText(file + "._versioner_backup_", oldContent);
-                System.IO.File.WriteAllText(file , newContent);
+                System.IO.File.WriteAllText(file + "._versioner_backup_", oldContent, System.Text.Encoding.UTF8);
+                System.IO.File.WriteAllText(file , newContent, System.Text.Encoding.UTF8);
                 this.Log = this.Log + Environment.NewLine + $" ver : {version} - file : {file}";
             }
             catch (Exception)
@@ -132,8 +130,8 @@ namespace versioner
             // backup and write
             try
             {
-                System.IO.File.WriteAllText(file + "._versioner_backup_", oldContent);
-                System.IO.File.WriteAllText(file, newContent);
+                System.IO.File.WriteAllText(file + "._versioner_backup_", oldContent, System.Text.Encoding.UTF8);
+                System.IO.File.WriteAllText(file, newContent, System.Text.Encoding.UTF8);
                 this.Log = this.Log + Environment.NewLine + $" ver : {version} - file : {file}";
             }
             catch (Exception)
@@ -141,140 +139,6 @@ namespace versioner
                 throw new Exception("Could not change project file.");
             }
         }
-
-
-
-
-        //private void ApplySetupProject(string projectFolder, string majorVersion, string minorVersion, string buildVersion)
-        //{
-        //    string fileName = string.Empty;
-        //    System.IO.FileStream fileStream = null;
-        //    System.IO.StreamWriter fileWriter = null;
-        //    BackupSetupProject(projectFolder);
-        //    if (!ChangeSetupProject(projectFolder, majorVersion, minorVersion, buildVersion))
-        //    {
-        //        RollbackSetupProject(projectFolder);
-        //        foreach (System.IO.FileInfo fi in new System.IO.DirectoryInfo(projectFolder).GetFiles("*.currentautoversion"))
-        //        {
-        //            System.System.IO.File.Delete(fi.FullName);
-        //        }
-
-        //        return;
-        //    }
-
-        //    foreach (System.IO.FileInfo fi in new System.IO.DirectoryInfo(projectFolder).GetFiles("*.currentautoversion"))
-        //    {
-        //        System.System.IO.File.Delete(fi.FullName);
-        //    }
-
-        //    fileName = System.IO.Path.Combine(projectFolder, string.Format("{0}_{1}_{2}.currentautoversion", majorVersion, minorVersion, buildVersion));
-        //    fileStream = new System.IO.FileStream(fileName, IO.FileMode.CreateNew);
-        //    fileWriter = new System.IO.StreamWriter(fileStream);
-        //    fileWriter.Write(string.Format("{0}_{1}_{2}.currentautoversion", majorVersion, minorVersion, buildVersion));
-        //    fileWriter.Flush();
-        //    fileWriter.Close();
-        //    fileStream.Close();
-        //}
-
-        //private void BackupSetupProject(string projectFolder)
-        //{
-        //    string versionFile = string.Empty;
-        //    string backupFile = string.Empty;
-        //    versionFile = new System.IO.DirectoryInfo(projectFolder).GetFiles("*.vdproj")(0).FullName;
-        //    backupFile = versionFile + ".autoversionbackup";
-        //    if (System.System.IO.File.Exists(backupFile))
-        //    {
-        //        System.System.IO.File.Delete(backupFile);
-        //    }
-
-        //    System.System.IO.File.Copy(versionFile, backupFile);
-        //}
-
-        //private bool ChangeSetupProject(string projectFolder, string majorVersion, string minorVersion, string buildVersion)
-        //{
-        //    int i = 0;
-        //    string fileName = string.Empty;
-        //    System.IO.FileStream fileStream = null;
-        //    System.IO.StreamReader fileReader = null;
-        //    System.IO.StreamWriter fileWriter = null;
-        //    List<string> fileLines = new List<string>;
-        //    string productVersionLine = string.Empty;
-        //    string productCodeLine = string.Empty;
-        //    string packageCodeLine = string.Empty;
-        //    try
-        //    {
-        //        fileName = new System.IO.DirectoryInfo(projectFolder).GetFiles("*.vdproj")(0).FullName;
-        //        productVersionLine = string.Format("        \"ProductVersion\" = \"8:{0}.{1}.{2}\"", majorVersion, minorVersion, buildVersion);
-        //        productCodeLine = "        \"ProductCode\" = \"8:{" + System.Guid.NewGuid.ToString.ToUpperInvariant + "}\"";
-        //        packageCodeLine = "        \"PackageCode\" = \"8:{" + System.Guid.NewGuid.ToString.ToUpperInvariant + "}\"";
-        //        fileStream = new System.IO.FileStream(fileName, IO.FileMode.Open);
-        //        fileReader = new System.IO.StreamReader(fileStream);
-        //        while (!fileReader.EndOfStream)
-        //        {
-        //            fileLines.Add(fileReader.ReadLine);
-        //        }
-
-        //        fileReader.Close();
-        //        fileStream.Close();
-        //        for (i = 0; i <= fileLines.Count - 1; i++)
-        //        {
-        //            if (fileLines(i).StartsWith("        \"ProductVersion\" = \"8:"))
-        //            {
-        //                fileLines(i) = productVersionLine;
-        //            }
-        //            else if (fileLines(i).StartsWith("        \"ProductCode\" = \"8:{"))
-        //            {
-        //                fileLines(i) = productCodeLine;
-        //            }
-        //            else if (fileLines(i).StartsWith("        \"PackageCode\" = \"8:{"))
-        //            {
-        //                fileLines(i) = packageCodeLine;
-        //            }
-        //        }
-
-        //        fileStream = new System.IO.FileStream(fileName, IO.FileMode.Truncate);
-        //        fileWriter = new System.IO.StreamWriter(fileStream);
-        //        for (i = 0; i <= fileLines.Count - 1; i++)
-        //        {
-        //            fileWriter.WriteLine(fileLines(i));
-        //        }
-
-        //        fileWriter.Flush();
-        //        fileWriter.Close();
-        //        fileStream.Close();
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        fileName = System.IO.Path.Combine(projectFolder, "autoversionerror.txt");
-        //        if (System.System.IO.File.Exists(fileName))
-        //        {
-        //            System.System.IO.File.Delete(fileName);
-        //        }
-
-        //        fileStream = new System.IO.FileStream(fileName, IO.FileMode.OpenOrCreate);
-        //        fileWriter = new System.IO.StreamWriter(fileStream);
-        //        fileWriter.Write(ex.Message);
-        //        fileWriter.Flush();
-        //        fileWriter.Close();
-        //        fileStream.Close();
-        //        return false;
-        //    }
-        //}
-
-        //private void RollbackSetupProject(string projectFolder)
-        //{
-        //    string versionFile = string.Empty;
-        //    string backupFile = string.Empty;
-        //    versionFile = new System.IO.DirectoryInfo(projectFolder).GetFiles("*.vdproj")(0).FullName;
-        //    backupFile = versionFile + ".autoversionbackup";
-        //    if (System.System.IO.File.Exists(versionFile))
-        //    {
-        //        System.System.IO.File.Delete(versionFile);
-        //    }
-
-        //    System.System.IO.File.Copy(backupFile, versionFile);
-        //}
 
     }
 }
